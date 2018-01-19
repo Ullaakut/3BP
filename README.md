@@ -19,3 +19,4 @@ The goal of this project is to solve and render the orbits of three bodies in tw
 * [ ] Add interface to select configurations
 * [ ] Add interface to manually change configuration
 * [ ] Improve UI
+* [ ] Responsiveness
