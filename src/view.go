@@ -16,7 +16,7 @@ const titleHeight = 1
 const titleEndY = titleStartY + titleHeight
 const boardStartX = defaultMarginWidth
 const boardStartY = titleEndY + defaultMarginHeight
-const boardWidth = 120
+const boardWidth = 240
 const boardHeight = 70
 const cellWidth = 2
 const boardEndX = boardStartX + boardWidth*cellWidth
@@ -36,11 +36,20 @@ var cellColors = []termbox.Attribute{
 // Render takes care of rendering everything.
 func Render(bodies []Body) {
 	termbox.Clear(backgroundColor, backgroundColor)
+	xmiddle := boardWidth / (2 * cellWidth)
+	ymiddle := boardHeight / 2
 
-	termbox.SetCell(boardWidth/(2/cellWidth), boardHeight/2, '+', termbox.ColorWhite, termbox.ColorDefault)
+	termbox.SetCell(xmiddle, ymiddle, '+', termbox.ColorWhite, termbox.ColorDefault)
 	for idx, body := range bodies {
-		xpos := boardStartX + cellWidth*(int(body.Position.x/unzoom)) + (boardWidth / (2 / cellWidth))
-		ypos := boardStartY + (int(body.Position.y / unzoom)) + (boardHeight / 2)
+		xpos := boardStartX + cellWidth*(int(body.Position.x/unzoom)) + xmiddle
+		ypos := boardStartY + (int(body.Position.y / unzoom)) + ymiddle
+
+		println("===========================")
+		println(xpos)
+		println(xmiddle)
+		println(body.Position.x)
+		println(ypos)
+		println(body.Position.y)
 
 		if xpos > 0 &&
 			xpos < boardWidth*cellWidth &&
@@ -49,7 +58,7 @@ func Render(bodies []Body) {
 
 			for i := 0; i < cellWidth; i++ {
 				color := cellColors[idx]
-				if xpos+i != boardWidth/(2/cellWidth) || ypos+i != boardHeight/2 {
+				if xpos+i != xmiddle || ypos+i != ymiddle {
 					termbox.SetCell(xpos+i, ypos, ' ', termbox.ColorWhite, color)
 				} else {
 					termbox.SetCell(xpos+i, ypos, '+', termbox.ColorWhite, color)

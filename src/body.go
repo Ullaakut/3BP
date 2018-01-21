@@ -5,7 +5,7 @@ import "math"
 // Body is
 type Body struct {
 	Position *Vector3D
-	Momentum *Vector3D
+	Velocity *Vector3D
 	Mass     float64
 }
 
@@ -53,8 +53,8 @@ func (v *Vector3D) normalize() *Vector3D {
 		}
 	}
 	return &Vector3D{
-		x: math.Sqrt(v.x * v.x),
-		y: math.Sqrt(v.y * v.y),
-		z: math.Sqrt(v.z * v.z),
+		x: math.Sqrt(v.x / v.length()),
+		y: math.Sqrt(v.y / v.length()),
+		z: math.Sqrt(v.z / v.length()),
 	}
 }

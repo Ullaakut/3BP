@@ -12,7 +12,7 @@ var Body1 = Body{ // red
 		y: 3,
 		z: 0,
 	},
-	Momentum: &Vector3D{
+	Velocity: &Vector3D{
 		x: 0,
 		y: 0,
 		z: 0,
@@ -26,7 +26,7 @@ var Body2 = Body{ // green
 		y: 1,
 		z: 0,
 	},
-	Momentum: &Vector3D{
+	Velocity: &Vector3D{
 		x: 0,
 		y: 0,
 		z: 0,
@@ -40,7 +40,7 @@ var Body3 = Body{ // blue
 		y: -1,
 		z: 0,
 	},
-	Momentum: &Vector3D{
+	Velocity: &Vector3D{
 		x: 0,
 		y: 0,
 		z: 0,
