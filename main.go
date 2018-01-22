@@ -1,8 +1,6 @@
 package main
 
 import (
-	"time"
-
 	"github.com/nsf/termbox-go"
 	"github.com/ullaakut/3BD/src"
 )
@@ -14,11 +12,11 @@ func main() {
 		tbp.Body3,
 	}
 
-	// err := termbox.Init()
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// defer termbox.Close()
+	err := termbox.Init()
+	if err != nil {
+		panic(err)
+	}
+	defer termbox.Close()
 
 	eventQueue := make(chan termbox.Event)
 	go func() {
@@ -38,8 +36,7 @@ func main() {
 			}
 		default:
 			tbp.Render(bodies)
-			bodies = tbp.ProcessBodies(bodies, 10, 1)
-			time.Sleep(1 * time.Second)
+			bodies = tbp.ProcessBodies(bodies, 10, 10)
 		}
 	}
 }

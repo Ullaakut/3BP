@@ -44,12 +44,9 @@ func Render(bodies []Body) {
 		xpos := boardStartX + cellWidth*(int(body.Position.x/unzoom)) + xmiddle
 		ypos := boardStartY + (int(body.Position.y / unzoom)) + ymiddle
 
-		println("===========================")
-		println(xpos)
-		println(xmiddle)
-		println(body.Position.x)
-		println(ypos)
-		println(body.Position.y)
+		// println("===========================")
+		// println(body.Position.x)
+		// println(body.Position.y)
 
 		if xpos > 0 &&
 			xpos < boardWidth*cellWidth &&

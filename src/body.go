@@ -40,21 +40,22 @@ func (v *Vector3D) mul(val float64) *Vector3D {
 	}
 }
 
+func (v *Vector3D) div(val float64) *Vector3D {
+	return &Vector3D{
+		x: v.x / val,
+		y: v.y / val,
+		z: v.z / val,
+	}
+}
+
 func (v *Vector3D) length() float64 {
 	return math.Sqrt(v.x*v.x + v.y*v.y + v.z*v.z)
 }
 
 func (v *Vector3D) normalize() *Vector3D {
-	if v.x == 0 && v.y == 0 && v.z == 0 {
-		return &Vector3D{
-			x: 0,
-			y: 0,
-			z: 0,
-		}
+	norm := v.length()
+	if norm == 0 {
+		norm = 1
 	}
-	return &Vector3D{
-		x: math.Sqrt(v.x / v.length()),
-		y: math.Sqrt(v.y / v.length()),
-		z: math.Sqrt(v.z / v.length()),
-	}
+	return v.div(norm)
 }
