@@ -8,21 +8,9 @@ const backgroundColor = termbox.ColorDefault
 const instructionsColor = termbox.ColorWhite
 
 // Layout
-const defaultMarginWidth = 0
-const defaultMarginHeight = 1
-const titleStartX = defaultMarginWidth
-const titleStartY = defaultMarginHeight
-const titleHeight = 1
-const titleEndY = titleStartY + titleHeight
-const boardStartX = defaultMarginWidth
-const boardStartY = titleEndY + defaultMarginHeight
 const boardWidth = 240
 const boardHeight = 70
 const cellWidth = 2
-const boardEndX = boardStartX + boardWidth*cellWidth
-const boardEndY = boardStartY + boardHeight
-const instructionsStartX = boardEndX + defaultMarginWidth
-const instructionsStartY = boardStartY
 
 // Text in the UI
 const title = "THREE BODY PROBLEM"
@@ -41,14 +29,17 @@ func Render(bodies []Body) {
 	xmiddle := boardWidth / (2 * cellWidth)
 	ymiddle := boardHeight / 2
 
+	// averageposx := (bodies[0].Position.x + bodies[1].Position.x + bodies[2].Position.x) / 3
+	// averageposy := (bodies[0].Position.y + bodies[1].Position.y + bodies[2].Position.y) / 3
+
 	termbox.SetCell(xmiddle, ymiddle, '+', termbox.ColorWhite, termbox.ColorDefault)
 	for idx, body := range bodies {
-		xpos := boardStartX + cellWidth*(int(body.Position.x/unzoom)) + xmiddle
-		ypos := boardStartY + (int(body.Position.y / unzoom)) + ymiddle
+		xpos := int(float64(cellWidth)*(body.Position.x/float64(unzoom)) + float64(xmiddle))
+		ypos := int((body.Position.y / float64(unzoom)) + float64(ymiddle))
 
-		// println("===========================")
-		// println(body.Position.x)
-		// println(body.Position.y)
+		// Follow bodies through space
+		// xpos = xpos - averageposx
+		// ypos = ypos - averageposy
 
 		if xpos > 0 &&
 			xpos < boardWidth*cellWidth &&

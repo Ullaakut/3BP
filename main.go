@@ -37,6 +37,7 @@ func main() {
 		default:
 			tbp.Render(bodies)
 			bodies = tbp.ProcessBodies(bodies, 10, 10)
+			// time.Sleep(1 * time.Millisecond)
 		}
 	}
 }
