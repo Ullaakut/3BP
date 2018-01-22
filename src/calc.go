@@ -4,7 +4,10 @@ import (
 	"math"
 )
 
-// ProcessBodies is
+// ProcessBodies takes bodies, gravity and speed and determines their next
+// positions and velocities. The speed just means doing multiple iterations
+// in the function. Useful for not having to render each position, as rendering
+// is slower than processing.
 func ProcessBodies(bodies []Body, gravity, speed float64) []Body {
 
 	interval := 0.0001
