@@ -8,14 +8,16 @@ In physics and classical mechanics, the three-body problem is the problem of tak
 
 The goal of this project is to solve and render the orbits of three bodies in two dimensions in a terminal.
 
-## How to test it?
+## How to test it
 
 * `get -u "github.com/nsf/termbox-go"`
 * `git clone git@github.com:ullaakut/3BP`
+* `cd $GOPATH/src/github.com/ullaakut/3BP`
+* `go run main.go`
 
-## What is there left to do?
+## What is there left to do
 
-* [ ] Find an equilibrium configuration that looks nice
+* [ ] Find an equilibrium configuration that looks niceg
 * [ ] Add interface to select configurations
 * [ ] Add interface to manually change configuration
 * [ ] Improve UI
