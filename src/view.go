@@ -8,7 +8,7 @@ const backgroundColor = termbox.ColorDefault
 const instructionsColor = termbox.ColorWhite
 
 // Layout
-const boardWidth = 240
+const boardWidth = 500
 const boardHeight = 70
 const cellWidth = 2
 
