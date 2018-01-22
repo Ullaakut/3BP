@@ -16,6 +16,7 @@ const cellWidth = 2
 const title = "THREE BODY PROBLEM"
 
 const unzoom = 1
+const followBodies = false
 
 var cellColors = []termbox.Attribute{
 	termbox.ColorRed,
@@ -29,17 +30,22 @@ func Render(bodies []Body) {
 	xmiddle := boardWidth / (2 * cellWidth)
 	ymiddle := boardHeight / 2
 
-	// averageposx := (bodies[0].Position.x + bodies[1].Position.x + bodies[2].Position.x) / 3
-	// averageposy := (bodies[0].Position.y + bodies[1].Position.y + bodies[2].Position.y) / 3
+	xshift := float64(0)
+	yshift := float64(0)
+	if followBodies {
+		// Follow bodies through space, always keeping the center of the rendering at the
+		// average position (x,y) of all bodies
+		xshift = (bodies[0].Position.x + bodies[1].Position.x + bodies[2].Position.x) / 3
+		yshift = (bodies[0].Position.y + bodies[1].Position.y + bodies[2].Position.y) / 3
+	}
 
 	termbox.SetCell(xmiddle, ymiddle, '+', termbox.ColorWhite, termbox.ColorDefault)
 	for idx, body := range bodies {
 		xpos := int(float64(cellWidth)*(body.Position.x/float64(unzoom)) + float64(xmiddle))
 		ypos := int((body.Position.y / float64(unzoom)) + float64(ymiddle))
 
-		// Follow bodies through space
-		// xpos = xpos - averageposx
-		// ypos = ypos - averageposy
+		xpos = xpos - int(xshift)
+		ypos = ypos - int(yshift)
 
 		if xpos > 0 &&
 			xpos < boardWidth*cellWidth &&
