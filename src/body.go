@@ -2,14 +2,14 @@ package tbp
 
 import "math"
 
-// Body is
+// Body represents a body in space
 type Body struct {
 	Position *Vector3D
 	Velocity *Vector3D
 	Mass     float64
 }
 
-// Vector3D is
+// Vector3D represents a 3D Vector
 type Vector3D struct {
 	x float64
 	y float64
