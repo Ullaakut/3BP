@@ -27,6 +27,8 @@ const instructionsStartY = boardStartY
 // Text in the UI
 const title = "THREE BODY PROBLEM"
 
+const unzoom = 1
+
 var cellColors = []termbox.Attribute{
 	termbox.ColorRed,
 	termbox.ColorGreen,

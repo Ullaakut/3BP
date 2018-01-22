@@ -16,36 +16,33 @@ type Vector3D struct {
 	z float64
 }
 
-func (v *Vector3D) sub(other *Vector3D) *Vector3D {
+func (v *Vector3D) clone() *Vector3D {
 	return &Vector3D{
-		x: v.x - other.x,
-		y: v.y - other.y,
-		z: v.z - other.z,
+		x: v.x,
+		y: v.y,
+		z: v.z,
 	}
+}
+
+func (v *Vector3D) sub(other *Vector3D) *Vector3D {
+	v.x = v.x - other.x
+	v.y = v.y - other.y
+	v.z = v.z - other.z
+	return v
 }
 
 func (v *Vector3D) add(other *Vector3D) *Vector3D {
-	return &Vector3D{
-		x: v.x + other.x,
-		y: v.y + other.y,
-		z: v.z + other.z,
-	}
+	v.x = v.x - other.x
+	v.y = v.y - other.y
+	v.z = v.z - other.z
+	return v
 }
 
 func (v *Vector3D) mul(val float64) *Vector3D {
-	return &Vector3D{
-		x: v.x * val,
-		y: v.y * val,
-		z: v.z * val,
-	}
-}
-
-func (v *Vector3D) div(val float64) *Vector3D {
-	return &Vector3D{
-		x: v.x / val,
-		y: v.y / val,
-		z: v.z / val,
-	}
+	v.x = v.x * val
+	v.y = v.y * val
+	v.z = v.z * val
+	return v
 }
 
 func (v *Vector3D) length() float64 {
@@ -55,7 +52,10 @@ func (v *Vector3D) length() float64 {
 func (v *Vector3D) normalize() *Vector3D {
 	norm := v.length()
 	if norm == 0 {
-		norm = 1
+		return v
 	}
-	return v.div(norm)
+	v.x = v.x / norm
+	v.y = v.y / norm
+	v.z = v.z / norm
+	return v
 }

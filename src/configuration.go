@@ -1,7 +1,5 @@
 package tbp
 
-const unzoom = 1
-
 // Butterfly orbit velocities
 // p1 := float64(0.306893)
 // p2 := float64(0.125507)
